@@ -34,11 +34,15 @@ public class Client {
 	}
 	
 	public String getBirthDate() {
-		return sdf1.format(birthDate);
+		return  sdf1.format(birthDate);
 	}
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
+	
+	public String toString() {
+		return name + " (" + sdf1.format(birthDate) + ") - " + email;
+ 	}
 
 }

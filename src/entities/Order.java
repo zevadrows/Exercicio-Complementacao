@@ -11,10 +11,17 @@ public class Order {
 
 	SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
 
-	private Date momment = new Date(System.currentTimeMillis());
+	private Date moment;
 	private OrderStatus status;
+	private Client client;
 
 	List<OrderItem> orderItem = new ArrayList<>();
+	
+	public Order(Date moment, OrderStatus status, Client client) {
+		this.moment = moment;
+		this.status = status;
+		this.client = client;
+	}
 
 	public void addItem(OrderItem orderItem) {
 		this.orderItem.add(orderItem);
@@ -33,7 +40,7 @@ public class Order {
 	}
 
 	public String getMomment() {
-		return sdf2.format(momment);
+		return sdf2.format(moment);
 	}
 
 	public OrderStatus getStatus() {
@@ -47,14 +54,13 @@ public class Order {
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
-	Client client;
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("\nOrder momment: ");
+		sb.append("\nOrder moment: ");
 		sb.append(getMomment());
 		sb.append("\nOrder Status: ");
 		sb.append(status);
-		sb.append("\nClient: " + client.getBirthDate() + "- " + client.getEmail());
+		sb.append("\nClient: " + client);
 		sb.append("\nOrder items:");
 		for (OrderItem o : orderItem) {
 			sb.append("\n" + o.getProduct().getName() + ", " + String.format("$%.2f", o.getProduct().getPrice()) + ", Quantity: " + o.getQuantity() + ", Subtotal: " + String.format("$%.2f", o.subTotal()));
